@@ -22,10 +22,12 @@ print(sess.run(linear_model, {x:[1,2,3,4]}))
 y = tf.placeholder(tf.float32)
 square_deltas = tf.square(linear_model - y)
 loss = tf.reduce_sum(square_deltas)
-print(sess.run(loss, {x:[1,2,3,4], y:[0,-1,-2,-3]}))
+print("Initially, W is 0.3, b is -0.3")
+print("The loss is "+str(sess.run(loss, {x:[1,2,3,4], y:[0,-1,-2,-3]})))
 
 # suppose we have a new W and b
 newW = tf.assign(W,[-1.0] )
 newb = tf.assign(b, [1.])
 sess.run([newW, newb]) # re-assign the global variables
-print(sess.run(loss, {x:[1,2,3,4], y:[0,-1,-2,-3]}))
+print("W is re-assigned as -1.0, b as 1.0")
+print("The loss is now "+str(sess.run(loss, {x:[1,2,3,4], y:[0,-1,-2,-3]})))
