@@ -5,6 +5,9 @@ os.environ['TF_CPP_MIN_LOG_LEVEL']='2'
 import numpy as np
 import tensorflow as tf
 
+# It seems that CPU:0 performs better than GPU:0.
+# I think it is due to the original W is only one-dimensional.
+# If we use a multi-dimensional tensor, GPU will perform better with parallelism
 with tf.device('/cpu:0'):
     # Model parameters - initial value
     W = tf.Variable([.3], tf.float32)
